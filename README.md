@@ -1,5 +1,4 @@
 # ClickMasterSharp v1.0
-----------
 
 ### Requires Visual Studio 2015
 
