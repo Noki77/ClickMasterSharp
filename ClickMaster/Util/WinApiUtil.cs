@@ -43,21 +43,49 @@ namespace ClickMaster.Util {
             mouse_event((uint) DwFlags, DX, DY, DwData, DwExtraInfo);
         }
 
-        public static void MouseDown(Action.ActionType.MouseButton MouseButton, uint MouseX, uint MouseY) {
-            SetCursorPos((int) MouseX, (int) MouseY);
+        public static void MouseDown(Action.ActionType.MouseButton MouseButton, uint MouseX, uint MouseY, bool move) {
+            if (move) {
+                SetCursorPos((int) MouseX, (int) MouseY);
+            }
             mouse_event(MouseButton == Action.ActionType.MouseButton.LEFT_BUTTON ? MouseFlags.MouseDownLeft
                 : MouseFlags.MouseDownRight, 0, 0, 0, 0);
         }
 
-        public static void MouseUp(Action.ActionType.MouseButton MouseButton, uint MouseX, uint MouseY) {
-            SetCursorPos((int) MouseX, (int) MouseY);
+        public static void MouseDown(Action.ActionType.MouseButton MouseButton, uint MouseX, uint MouseY) {
+            MouseDown(MouseButton, MouseX, MouseY, true);
+        }
+
+        public static void MouseDown(Action.ActionType.MouseButton MouseButton) {
+            MouseDown(MouseButton, 0, 0, false);
+        }
+
+        public static void MouseUp(Action.ActionType.MouseButton MouseButton, uint MouseX, uint MouseY, bool move) {
+            if (move) {
+                SetCursorPos((int) MouseX, (int) MouseY);
+            }
             mouse_event(MouseButton == Action.ActionType.MouseButton.LEFT_BUTTON ? MouseFlags.MouseUpLeft
                 : MouseFlags.MouseUpRight, 0, 0, 0, 0);
         }
 
+        public static void MouseUp(Action.ActionType.MouseButton MouseButton, uint MouseX, uint MouseY) {
+            MouseUp(MouseButton, MouseX, MouseY, true);
+        }
+
+        public static void MouseUp(Action.ActionType.MouseButton MouseButton) {
+            MouseUp(MouseButton, 0, 0, false);
+        }
+
+        public static void MouseClick(Action.ActionType.MouseButton MouseButton, uint MouseX, uint MouseY, bool move) {
+            MouseDown(MouseButton, MouseX, MouseY, move);
+            MouseUp(MouseButton, MouseX, MouseY, move);
+        }
+
         public static void MouseClick(Action.ActionType.MouseButton MouseButton, uint MouseX, uint MouseY) {
-            MouseDown(MouseButton, MouseX, MouseY);
-            MouseUp(MouseButton, MouseX, MouseY);
+            MouseClick(MouseButton, MouseX, MouseY, true);
+        }
+
+        public static void MouseClick(Action.ActionType.MouseButton MouseButton) {
+            MouseClick(MouseButton, 0, 0, false);
         }
 
         public static void MouseMove(uint AmountX, uint AmountY) {

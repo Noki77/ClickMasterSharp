@@ -28,6 +28,7 @@ namespace ClickMaster {
         public ActionType Type { get; }
         public Point Location { get; }
         public Keys Key { get; }
+        public bool MoveMouse = true;
 
         public Action(ActionType Type, Keys Key) {
             this.Type = Type;
@@ -39,12 +40,18 @@ namespace ClickMaster {
             this.Location = Location;
         }
 
+        public Action(ActionType Type, Point Location, bool Move) {
+            this.Type = Type;
+            this.Location = Location;
+            this.MoveMouse = Move;
+        }
+
         public bool isKey() {
             return this.Type.Equals(ActionType.KeyDown) || this.Type.Equals(ActionType.KeyUp) || this.Type.Equals(ActionType.KeyPress);
         }
 
         public override string ToString() {
-            return Type.DisplayString + " " + (isKey() ? "[ " + this.Key + " ]" : "(" + this.Location.X + "; " + this.Location.Y + ")");
+            return Type.DisplayString + " " + (isKey() ? "[ " + this.Key + " ]" : "(" + this.Location.X + "; " + this.Location.Y + ")" + (!this.MoveMouse ? " [Not moving]" : ""));
         }
 
         public class ActionType {

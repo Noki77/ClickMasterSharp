@@ -140,17 +140,17 @@ namespace ClickMaster.Gui {
 
         private void AddMousePress(object sender, EventArgs e) {
             this.ActionsList.Add(new Action(this.MouseKeyButton.Toggled ? Action.ActionType.RightClick : Action.ActionType.LeftClick,
-                new Point(Decimal.ToInt32(this.MouseXSpinner.Value), Decimal.ToInt32(this.MouseYSpinner.Value))));
+                new Point(Decimal.ToInt32(this.MouseXSpinner.Value), Decimal.ToInt32(this.MouseYSpinner.Value)), this.ChangePositionTick.Checked));
         }
 
         private void AddMouseUp(object sender, EventArgs e) {
             this.ActionsList.Add(new Action(this.MouseKeyButton.Toggled ? Action.ActionType.MouseUpRight : Action.ActionType.MouseUpLeft,
-                new Point(Decimal.ToInt32(this.MouseXSpinner.Value), Decimal.ToInt32(this.MouseYSpinner.Value))));
+                new Point(Decimal.ToInt32(this.MouseXSpinner.Value), Decimal.ToInt32(this.MouseYSpinner.Value)), this.ChangePositionTick.Checked));
         }
 
         private void AddMouseDown(object sender, EventArgs e) {
             this.ActionsList.Add(new Action(this.MouseKeyButton.Toggled ? Action.ActionType.MouseDownRight : Action.ActionType.MouseDownLeft,
-                new Point(Decimal.ToInt32(this.MouseXSpinner.Value), Decimal.ToInt32(this.MouseYSpinner.Value))));
+                new Point(Decimal.ToInt32(this.MouseXSpinner.Value), Decimal.ToInt32(this.MouseYSpinner.Value)), this.ChangePositionTick.Checked));
         }
     }
 }

@@ -87,11 +87,23 @@ namespace ClickMaster {
 
             foreach (Action j in Actions) {
                 if (j.Type == Action.ActionType.LeftClick || j.Type == Action.ActionType.RightClick) {
-                    WinApiUtil.MouseClick(j.Type.ButtonPressed, (uint) j.Location.X, (uint) j.Location.Y);
+                    if (j.MoveMouse) {
+                        WinApiUtil.MouseClick(j.Type.ButtonPressed, (uint) j.Location.X, (uint) j.Location.Y);
+                    } else {
+                        WinApiUtil.MouseClick(j.Type.ButtonPressed);
+                    }
                 } else if (j.Type == Action.ActionType.MouseDownLeft || j.Type == Action.ActionType.MouseDownRight) {
-                    WinApiUtil.MouseDown(j.Type.ButtonPressed, (uint) j.Location.X, (uint) j.Location.Y);
+                    if (j.MoveMouse) {
+                        WinApiUtil.MouseDown(j.Type.ButtonPressed, (uint) j.Location.X, (uint) j.Location.Y);
+                    } else {
+                        WinApiUtil.MouseDown(j.Type.ButtonPressed);
+                    }
                 } else if (j.Type == Action.ActionType.MouseUpLeft || j.Type == Action.ActionType.MouseUpRight) {
-                    WinApiUtil.MouseUp(j.Type.ButtonPressed, (uint) j.Location.X, (uint) j.Location.Y);
+                    if (j.MoveMouse) {
+                        WinApiUtil.MouseUp(j.Type.ButtonPressed, (uint) j.Location.X, (uint) j.Location.Y);
+                    } else {
+                        WinApiUtil.MouseUp(j.Type.ButtonPressed);
+                    }
                 } else if (j.Type == Action.ActionType.KeyDown) {
                     WinApiUtil.KeyDown(j.Key);
                 } else if (j.Type == Action.ActionType.KeyUp) {

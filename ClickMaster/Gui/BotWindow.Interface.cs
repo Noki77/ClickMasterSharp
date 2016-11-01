@@ -51,6 +51,7 @@ namespace ClickMaster.Gui {
         private Button StartKeyButton;
         private Button StartButton;
         private ToggleButton MouseKeyButton;
+        private CheckBox ChangePositionTick;
         private GroupBox MouseGroup;
         private GroupBox KeyGroup;
         private NumericUpDown MouseYSpinner;
@@ -98,6 +99,7 @@ namespace ClickMaster.Gui {
             this.IterationsSpinner = new NumericUpDown();
 
             this.KeyChosenBox = new TextBox();
+            this.ChangePositionTick = new CheckBox();
 
             this.ActionsList = new ActionList();
 
@@ -122,7 +124,7 @@ namespace ClickMaster.Gui {
             this.ActionsList.Alignment = ListViewAlignment.Default;
             this.ActionsList.View = View.List;
             this.ActionsList.MultiSelect = false;
-            this.ActionsList.Size = new Size(208, 592);
+            this.ActionsList.Size = new Size(208, 620);
             this.ActionsList.Location = new Point(12, 12);
             this.ActionsList.TabStop = true;
             this.ActionsList.TabIndex = 0;
@@ -175,6 +177,11 @@ namespace ClickMaster.Gui {
             this.MouseChoosePointButton.TabIndex = 96;
             this.MouseChoosePointButton.Click += this.ChooseMouseCoords;
 
+            this.ChangePositionTick.Text = "Move Mouse Cursor";
+            this.ChangePositionTick.Checked = true;
+            this.ChangePositionTick.Location = new Point(17, 258);
+            this.ChangePositionTick.Padding = new Padding(0, 8, 0, 0);
+
             this.KeyAddTypeButton.Text = "Add key type";
             this.KeyAddTypeButton.Location = new Point(17, 95);
             this.KeyAddTypeButton.Size = new Size(179, 23);
@@ -201,14 +208,14 @@ namespace ClickMaster.Gui {
             this.KeySelectButton.KeyUp += this.ReceiveKey;
 
             this.StartKeyButton.Text = "Key: " + this.StartKey;
-            this.StartKeyButton.Location = new Point(12, 670);
+            this.StartKeyButton.Location = new Point(12, 698);
             this.StartKeyButton.Size = new Size(135, 23);
             this.StartKeyButton.TabIndex = 16;
             this.StartKeyButton.Click += this.SelectStartKey;
             this.StartKeyButton.KeyUp += this.ReceiveKey;
             
             this.StartButton.Text = "Start bot";
-            this.StartButton.Location = new Point(153, 670);
+            this.StartButton.Location = new Point(153, 698);
             this.StartButton.Size = new Size(297, 24);
             this.StartButton.TabIndex = 17;
             this.StartButton.Click += this.StartOrStopBot;
@@ -236,19 +243,19 @@ namespace ClickMaster.Gui {
             this.KeyChosenBox.Enabled = false;
             this.KeyChosenBox.ReadOnly = true;
 
-            this.DelaySpinner.Location = new Point(12, 640);
+            this.DelaySpinner.Location = new Point(12, 668);
             this.DelaySpinner.Size = new Size(200, 20);
             this.DelaySpinner.TabIndex = 12;
             this.DelaySpinner.Maximum = Int32.MaxValue;
 
-            this.IterationsSpinner.Location = new Point(229, 640);
+            this.IterationsSpinner.Location = new Point(229, 668);
             this.IterationsSpinner.Size = new Size(215, 20);
             this.IterationsSpinner.Minimum = -1;
             this.IterationsSpinner.TabIndex = 15;
             this.IterationsSpinner.Maximum = Int32.MaxValue;
 
             this.MouseGroup.Text = "Mouse events";
-            this.MouseGroup.Size = new Size(218, 267);
+            this.MouseGroup.Size = new Size(218, 290);
             this.MouseGroup.Location = new Point(226, 142);
             this.MouseGroup.TabStop = false;
             this.MouseGroup.Controls.Add(this.MouseAddDownButton);
@@ -260,10 +267,11 @@ namespace ClickMaster.Gui {
             this.MouseGroup.Controls.Add(this.MouseXSpinner);
             this.MouseGroup.Controls.Add(this.MouseXLabel);
             this.MouseGroup.Controls.Add(this.MouseKeyButton);
+            this.MouseGroup.Controls.Add(this.ChangePositionTick);
 
             this.KeyGroup.Text = "Keyboard events";
             this.KeyGroup.Size = new Size(215, 192);
-            this.KeyGroup.Location = new Point(229, 412);
+            this.KeyGroup.Location = new Point(229, 440);
             this.KeyGroup.TabStop = false;
             this.KeyGroup.Controls.Add(this.KeyAddDownButton);
             this.KeyGroup.Controls.Add(this.KeyAddUpButton);
@@ -281,15 +289,15 @@ namespace ClickMaster.Gui {
             this.MouseYLabel.Size = new Size(87, 13);
             this.DelayLabel.Text = "Type delay";
             this.DelayLabel.AutoSize = true;
-            this.DelayLabel.Location = new Point(9, 624);
+            this.DelayLabel.Location = new Point(9, 652);
             this.DelayLabel.Size = new Size(59, 13);
             this.IterationsLabel.Text = "Amount of iterations";
             this.IterationsLabel.AutoSize = true;
-            this.IterationsLabel.Location = new Point(226, 624);
+            this.IterationsLabel.Location = new Point(226, 652);
             this.IterationsLabel.Size = new Size(100, 13);
 
             this.Seperator.BackColor = Color.LightGray;
-            this.Seperator.Location = new Point(6, 610);
+            this.Seperator.Location = new Point(6, 638);
             this.Seperator.Size = new Size(444, 1);
 
             string tooltip = "Sets the delay in which the bot will perform the actions (in milliseconds, 0 means no delay)";
@@ -301,9 +309,9 @@ namespace ClickMaster.Gui {
             this.ComponentToolTip.SetToolTip(this.IterationsSpinner, tooltip);
 
             this.Text = "ClickMaster Sharp v1.0";
-            this.ClientSize = new Size(456, 706);
-            this.MaximumSize = new Size(472, 745);
-            this.MinimumSize = new Size(472, 745);
+            this.ClientSize = new Size(456, 734);
+            this.MaximumSize = new Size(472, 773);
+            this.MinimumSize = new Size(472, 773);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
             this.Icon = Properties.Resources.ClickMaster_Icon;
